@@ -7,7 +7,6 @@ app.use(express.json());
 
 // Defining the /hello endpoint
 app.get('/hello', (req, res) => {
-    req.params.
   res.send('Hello, world!');
 });
 
