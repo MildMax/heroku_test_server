@@ -10,6 +10,10 @@ app.get('/hello', (req, res) => {
   res.send('Hello, world!');
 });
 
+app.get('/', (req, res) => {
+    res.send('Welcome to the heroku test site');
+  });
+
 // Defining the /state endpoint that takes a 'value' parameter
 app.get('/state', (req, res) => {
     // Extracting the 'value' parameter from the query string
