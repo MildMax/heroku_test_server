@@ -3,6 +3,7 @@ const express = require('express');
 
 // Creating an instance of Express
 const app = express();
+app.use(express.json());
 
 // Defining the /hello endpoint
 app.get('/hello', (req, res) => {
