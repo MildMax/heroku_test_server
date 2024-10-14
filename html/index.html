@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <script>
+        // This function will be triggered when the button is clicked
+        async function fetchValue() {
+            try {
+                // Fetching the JSON data from the /value endpoint
+                const response = await fetch('/value');
+                
+                // Checking if the response is ok (status 200-299)
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                // Parsing the JSON response
+                const data = await response.json();
+
+                // Extracting the 'value' from the JSON data
+                const value = data.value;
+
+                // Inserting the 'value' into the <h3> tag with id 'server_value'
+                document.getElementById('server_value').innerText = value;
+
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+    </script>
+
+    <script>
+        // Function to fetch the value from /value endpoint on page load
+        async function fetchValueOnLoad() {
+            try {
+                // Fetching the JSON data from the /value endpoint
+                const response = await fetch('/value');
+
+                // Checking if the response is ok (status 200-299)
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                // Parsing the JSON response
+                const data = await response.json();
+
+                // Extracting the 'value' from the JSON data
+                const value = data.value;
+
+                // Inserting the 'value' into the <h3> tag with id 'server_value'
+                document.getElementById('server_value').innerText = value;
+
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+
+        // Setting the function to be called when the page finishes loading
+        window.onload = fetchValueOnLoad;
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the heroku test site</h1>
+    </header>
+
+    <div>
+        <a href="/increment">GET value from server</a>
+        <p>Last logged value: </p>
+        <h3 id="server_value">No value yet</h3>
+        <button onclick="fetchValue()">Fetch Value</button>
+    </div>
+</body>
+</html>
